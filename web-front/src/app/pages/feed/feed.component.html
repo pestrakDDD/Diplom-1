@@ -1,0 +1,21 @@
+
+<button mat-raised-button color="primary" style="margin: 25px 0 0 15px;" (click)="create()">Создать</button>
+
+<div style="margin: 10px auto; max-height: 500px; overflow-y: scroll; padding: 15px;">
+
+  <div style="width: 100%; position: relative; height: 150px; box-shadow: 0 0 5px; margin-top: 15px;"
+      *ngFor="let element of data"
+      (click)="createOrEdit(element.id)">
+    <h3 style="width: 100%; text-align: center; padding-top: 5px;">{{element.name}}</h3>
+    <hr>
+    <p style="width: 90%; padding: 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;" [innerHtml]="element.description"></p>
+
+  <button mat-raised-button color="warn" style="margin: 25px 0 0 15px;" (click)="deleteId(element.id)">Удалить</button>
+
+  </div>
+
+
+</div>
