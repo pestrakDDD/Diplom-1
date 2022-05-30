@@ -1,6 +1,6 @@
 package ru.churikov.rest.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.churikov.rest.models.Feed;
 import ru.churikov.rest.repoitory.FeedRepository;
@@ -8,10 +8,10 @@ import ru.churikov.rest.repoitory.FeedRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FeedService {
 
-    @Autowired
-    private FeedRepository feedRepository;
+    private final FeedRepository feedRepository;
 
     public List<Feed> getAllFeed() {
         return feedRepository.findAll();
