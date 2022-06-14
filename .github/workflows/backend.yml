@@ -54,6 +54,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: wonnex/backend:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
           secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.DOCKER_HUB_USERNAME }}/Token_application:latest
+            GIT_AUTH_TOKEN=${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
