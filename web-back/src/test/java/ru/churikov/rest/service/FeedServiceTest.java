@@ -15,6 +15,7 @@ import ru.churikov.rest.models.Feed;
 import ru.churikov.rest.models.FeedDto;
 import ru.churikov.rest.repoitory.FeedRepository;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,7 +61,6 @@ class FeedServiceTest {
 
     @Test
     void verifyThatGetAllFeedsSuccessiful() {
-        List<Feed> result = new ArrayList<>();
         Mockito.when(repository.findAll()).thenReturn(getListFeed());
         List<Feed> feeds = service.getAllFeed();
         assertEquals(feeds, getListFeed());
