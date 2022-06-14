@@ -5,7 +5,11 @@ import ru.churikov.rest.db.BaseEntity;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Feed extends BaseEntity {
 
