@@ -2,6 +2,7 @@ version: '3'
 services:
 
   front:
+    build: .
     image: wonnex/frontend
     container_name: frontend
     ports: 
