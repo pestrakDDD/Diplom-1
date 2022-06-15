@@ -34,13 +34,14 @@ jobs:
       
     - name: Build with Gradle
       run: ./gradlew build --scan
-    
+    - name: creat jar file
+      run: jar -cf <template-REST-1.0-SNAPSHOT.jar>
   #  - run: mkdir -p build/libs
    # - run: echo hello > build/libs/template-REST-1.0-SNAPSHOT.jar 
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path: build/libs/template-REST-1.0-SNAPSHOT.jar
+        path: ./template-REST-1.0-SNAPSHOT.jar
     
   docker:
     runs-on: ubuntu-latest
@@ -57,7 +58,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
          name: my-artifact
-         path: build/libs/template-REST-1.0-SNAPSHOT.jar
+         path: ./template-REST-1.0-SNAPSHOT.jar
       - run: cat build/libs/template-REST-1.0-SNAPSHOT.jar 
       
       - name: Build & push image
