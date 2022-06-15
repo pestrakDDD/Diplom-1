@@ -57,4 +57,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
+          tags: docker.io/wonnex/backend:latest
