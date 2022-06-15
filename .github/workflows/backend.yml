@@ -58,5 +58,3 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
