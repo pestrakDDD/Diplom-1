@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: write, read, delete
+  contents: read
 
 jobs:
   build:
@@ -59,4 +59,4 @@ jobs:
         with:
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/backend:latest
+          tags: backend:latest
