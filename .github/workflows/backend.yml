@@ -38,6 +38,7 @@ jobs:
     
   docker:
     runs-on: ubuntu-latest
+    needs: build
     defaults:
      run:
        working-directory: 'web-back'
