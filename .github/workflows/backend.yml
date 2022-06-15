@@ -29,18 +29,18 @@ jobs:
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      
     - name: Build with Gradle
-      run: ./gradlew build
-    - name: Clear with Jar
-      run: ./gradlew clean
-    - name: Build with Jar
-      run: ./gradlew bootJar 
-    - run: mkdir -p build/libs
-    - run: echo hello > build/libs/template-REST-1.0-SNAPSHOT.jar 
+      run: ./gradlew build --scan
+    
+  #  - run: mkdir -p build/libs
+   # - run: echo hello > build/libs/template-REST-1.0-SNAPSHOT.jar 
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path: build/libs build/libs
+        path: build/libs 
     
   docker:
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
          name: my-artifact
-         path: build/libs build/libs
+         path: build/libs
       - run: cat build/libs/template-REST-1.0-SNAPSHOT.jar 
       
       - name: Build & push image
