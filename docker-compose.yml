@@ -2,13 +2,16 @@ version: '3'
 services:
 
   front:
+    command: docker pull wonnex/frontend:latest
     image: wonnex/frontend
     container_name: frontend
     ports: 
       - 4200:4200
     restart: always
     
+  
   back:
+    command: docker pull wonnex/backend:latest
     image: wonnex/backend
     container_name: backend
     ports:
