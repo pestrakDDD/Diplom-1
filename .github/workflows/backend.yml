@@ -32,9 +32,9 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Build with Gradle
-      run: ./gradlew build --scan
+      run: ./gradlew build 
     - name: ///////Build with Gradle
-      run: ./gradlew install
+      run: ./gradlew  package
     - run: echo hello > build/libs/template-REST-1.0-SNAPSHOT.jar 
     - uses: actions/upload-artifact@v3
       with:
