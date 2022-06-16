@@ -30,26 +30,25 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        gradle-version: 6.8
-      
     - name: Build with Gradle
-      run: ./gradlew build 
+      run: ./gradlew build
       
-    - name: Validate Gradle wrapper
-      uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
-      with:
-        arguments: build
-      
-    - run: echo hello > build/libs/template-REST-1.0-SNAPSHOT.jar 
-    - uses: actions/upload-artifact@v3
-      with:
-        name:  jar file
-        path:  build/libs
+    - name: Get the version
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:10})
+    - name: Docker login
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      run : docker login -u="$DOCKER_HUB_USERNAME" -p="$DOCKER_HUB_ACCESS_TOKEN" docker.io
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{secrets.wonnex/backend:latest}}:${{steps.vars.outputs.tag}}
+    - name: Publish dockerimage to docker hub
+      run: docker push ${{secrets.docker_username}}/${{secrets.wonnex/backend:latest}}:${{steps.vars.outputs.tag}}
+    - name: Build Docker image with latest tag
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{secrets.wonnex/backend:latest}}:latest
+    - name: Publish dockerimage to docker hub
+      run: docker push ${{secrets..DOCKER_HUB_USERNAME}}/${{secrets.wonnex/backend:latest}}:latest
     
   docker:
     runs-on: ubuntu-latest
