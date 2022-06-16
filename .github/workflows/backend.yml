@@ -48,7 +48,7 @@ jobs:
     - name: Build Docker image with latest tag
       run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{secrets.DOCKER_REPO}}:latest
     - name: Publish dockerimage to docker hub
-      run: docker push ${{secrets..DOCKER_HUB_USERNAME}}/${{secrets.DOCKER_REPO}}:latest
+      run: docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{secrets.DOCKER_REPO}}:latest
     
   docker:
     runs-on: ubuntu-latest
