@@ -44,35 +44,16 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag wonnex/backend:latest
+      run: docker build --file Dockerfile --tag wonnex/backend:latest .
     - name: Publish dockerimage to docker hub
       run: docker push wonnex/backend:latest
     - name: Build Docker image with latest tag
-      run: docker build . wonnex/backend:latest
+      run: docker build wonnex/backend:latest  .
     - name: Publish dockerimage to docker hub
       run: docker push wonnex/backend:latest
     
-  docker:
-    runs-on: ubuntu-latest
-    needs: build
-    defaults:
-     run:
-       working-directory: 'web-back'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-         name: jar file
-         path:  build/libs
-         
-      - run: cat build/libs/template-REST-1.0-SNAPSHOT.jar 
-      
-      - name: Build & push image
-        run: |
-           echo "${{secrets.DOCKER_HUB_ACCESS_TOKEN}}" | docker login -u "wonnex" --password-stdin
-           docker image build -t wonnex/backend:latest .
-           docker push wonnex/backend:latest 
+     # - name: Build & push image
+      #  run: |
+       #    echo "${{secrets.DOCKER_HUB_ACCESS_TOKEN}}" | docker login -u "wonnex" --password-stdin
+       #    docker image build -t wonnex/backend:latest .
+       #    docker push wonnex/backend:latest 
