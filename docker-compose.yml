@@ -2,7 +2,6 @@ version: '3'
 services:
 
   front:
-    build: .
     image: wonnex/frontend
     container_name: frontend
     ports: 
@@ -10,7 +9,6 @@ services:
     restart: always
     
   back:
-    build: .
     image: wonnex/backend
     container_name: backend
     ports:

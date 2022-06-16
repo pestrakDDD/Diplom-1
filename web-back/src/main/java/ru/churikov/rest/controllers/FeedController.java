@@ -11,6 +11,11 @@ import java.util.List;
 @RequestMapping("api/feed")
 public class FeedController {
 
+    @GetMapping(value = "Hello")
+     String getHello() {
+        return "Hello";
+    }
+
     @Autowired
     private FeedService feedService;
 
