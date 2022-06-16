@@ -47,6 +47,8 @@ jobs:
       run: docker build --file Dockerfile --tag wonnex/backend:latest .
     - name: Publish dockerimage to docker hub
       run: docker push wonnex/backend:latest
+    - name: docker run
+      run: docker run wonnex/backend:latest
 
 
     
