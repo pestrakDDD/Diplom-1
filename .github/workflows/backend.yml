@@ -26,12 +26,33 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11'
-        distribution: 'temurin'
+        distribution: 'adopt'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Clear with Jar
-      run: ./gradlew clean
-    - name: Build with Jar
-      run: ./gradlew bootJar 
+      
     - name: Build with Gradle
       run: ./gradlew build
+      
+    - name: Get the version
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:10})
+      
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
+        
+    - name: Build the Docker image
+      run: docker build --file Dockerfile --tag wonnex/backend:latest .
+    - name: Publish dockerimage to docker hub
+      run: docker push wonnex/backend:latest
+   
+
+
+    
+     # - name: Build & push image
+      #  run: |
+       #    echo "${{secrets.DOCKER_HUB_ACCESS_TOKEN}}" | docker login -u "wonnex" --password-stdin
+       #    docker image build -t wonnex/backend:latest .
+       #    docker push wonnex/backend:latest 
