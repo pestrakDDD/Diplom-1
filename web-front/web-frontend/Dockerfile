@@ -1,5 +1,5 @@
 FROM node:16 AS build
-#WORKDIR /web-frontend/src/app
+WORKDIR /web-front/web-frontend
 COPY package.json package-lock.json ./
 RUN npm install
 EXPOSE 4200
