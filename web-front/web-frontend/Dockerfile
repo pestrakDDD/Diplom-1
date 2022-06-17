@@ -1,4 +1,4 @@
-FROM node:16 AS build
+FROM node:16 
 #WORKDIR /web-front/web-frontend
 COPY package.json package-lock.json ./
 RUN npm install
