@@ -33,6 +33,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       
+    - name: Clean Jar
+      run: ./gradlew clean
+       
+    - name: Build Jar
+      run: ./gradlew bootJar
+      
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:10})
